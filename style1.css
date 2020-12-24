@@ -1,0 +1,21 @@
+header{
+    height: 30px;
+}
+.kt-bg{
+    background-color: #272727;
+}
+.kt-isl{
+    padding: 20px;
+    background-color: #353535;
+    border-radius: 10px;
+}
+.btn_row{
+    margin: 20px 0px;
+}
+/*button{
+    background-color: #333333;
+    color: #f0f0f0;
+}*/
+#submit{
+    font-size: 20px;
+}
