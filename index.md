@@ -1,5 +1,7 @@
 # フライングオニオオハシのページ
 
-ここには何もありません。
+[くいくいタイパー](https://www.ketcha.xyz/cuicui)
 
-リンクを追加する予定です。
+[オルソリひーと | Ortho Heat](https://www.ketcha.xyz/ortho_heat)
+
+[オルソリふぉーる | Ortho Fall](https://www.ketcha.xyz/ortho_typing)
