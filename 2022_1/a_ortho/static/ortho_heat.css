@@ -1,0 +1,73 @@
+body{
+    font-family: 'Noto Sans JP', sans-serif;
+	font-size:normal;
+	/*color: #eee;
+    background-color: #243138;*/
+}
+
+
+.wrap {
+	/*
+  display: flex;
+  flex-direction: column;*/
+  min-height: 100vh;
+}
+
+header{
+	padding: 0.5rem;
+}
+
+.playground{
+	position:relative;
+	width: 700px;
+	height: 500px;
+	border: solid 1px black;
+	background-color: #faf6e9;
+}
+.playground div{
+	font-size: xx-large;
+	position: absolute;
+	width: 70px;
+	height: 70px;
+	text-align: center;
+	line-height: 70px;
+}
+.form-range{
+	width: 600px;
+}
+
+.heat-box{
+	display: block;
+	width: 700px;
+	height: 210px;
+	margin: 50px 0;
+}
+.key{
+	font-size: x-large;
+	float: left;
+	width: 66px;
+	height: 66px;
+	margin: 2px;
+	border: solid 2px black;
+	text-align: center;
+	line-height: 70px;
+}
+
+.mod{
+	margin: 30px 0;
+}
+.layout-mod{
+}
+.layout-mod textarea{
+	font-family: monospace;
+	width: 200px;
+	height: 100px;
+}
+.text-mod textarea{
+	width: 700px;
+	height: 300px;
+}
+
+footer {
+	padding: 0.5rem;
+}
