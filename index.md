@@ -6,4 +6,4 @@
 
 [オルソリふぉーる  Ortho Fall](https://oha-ohashi.github.io/2022_1/a_ortho/ortho_typing.html)
 
-[オルソリさーち | Ortho Search](https://oha-ohashi.github.io/ortho_search/)
+[オルソリさーち Ortho Search](https://oha-ohashi.github.io/ortho_search/)
