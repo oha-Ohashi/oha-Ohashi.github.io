@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>視力チェック</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: left;
+    }
+    #output {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>視力チェック</h1>
+<button onclick="generateRandomString()">ランダム文字列生成</button>
+<div id="output"></div>
+
+<script>
+  const abclist = 'abcdefghijklmnopqrstuvwxyz';
+  const kanjiList = '独機能憎喜滋賀道頓堀嘘誠百千万言語月火水木金土日';
+  const hiraganaList = 'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん';
+
+  function getRandomFourCharacters(source) {
+    let result = '';
+    for (let i = 0; i < 4; i++) {
+      const randomIndex = Math.floor(Math.random() * source.length);
+      result += source[randomIndex];
+    }
+    return result;
+  }
+
+  function generateRandomString() {
+    const outputDiv = document.getElementById('output');
+    outputDiv.innerHTML = '';
+
+    for (let i = 0; i < 10; i++) {
+      const randomString = (i + 1).toString() + ': '
+        + getRandomFourCharacters(abclist)
+        + getRandomFourCharacters(kanjiList) 
+        + getRandomFourCharacters(hiraganaList);
+      const line = document.createElement('p');
+      line.style.fontSize = (18 - i) + 'pt';
+      line.textContent = randomString;
+      outputDiv.appendChild(line);
+    }
+  }
+</script>
+
+</body>
+</html>
