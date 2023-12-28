@@ -38,13 +38,13 @@
     const outputDiv = document.getElementById('output');
     outputDiv.innerHTML = '';
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 15; i++) {
       const randomString = (i + 1).toString() + ': '
         + getRandomFourCharacters(abclist)
         + getRandomFourCharacters(kanjiList) 
         + getRandomFourCharacters(hiraganaList);
       const line = document.createElement('p');
-      line.style.fontSize = (18 - i) + 'pt';
+      line.style.fontSize = (16 - i) + 'pt';
       line.textContent = randomString;
       outputDiv.appendChild(line);
     }
