@@ -13,7 +13,7 @@ function createheatmap(layout, text){
 	console.log(text);
 	console.log(text.length)
 
-	for(var i = 0; i < 30; i++){
+	for(var i = 0; i < 36; i++){
 		$(".key").eq(i).text(layout[i]);
 	}
 
@@ -27,8 +27,8 @@ function createheatmap(layout, text){
 		//console.log(elm.text());
 		index = $(".heat-box .key").index(elm);
 		//console.log(index);
-		var y = Math.floor(index / 10);
-		var x = index % 10;
+		var y = Math.floor(index / 12);
+		var x = index % 12;
 		var point = {
 			x: (x+0.5) * one_u,
 			y: (y+0.5) * one_u,
@@ -43,7 +43,7 @@ function createheatmap(layout, text){
 	// now generate some random data
 	var points = [];
 	var max = 0;
-	var width = 700;
+	var width = 840;
 	var height = 210;
 	var len = 200;
 
