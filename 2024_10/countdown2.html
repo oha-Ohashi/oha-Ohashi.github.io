@@ -11,6 +11,7 @@
             background-color: #252525;
             color: white;
             font-family: sanserif;
+            font-size: x-large;
         }
         p{
             width: 120px;
@@ -18,6 +19,10 @@
         }
         .pair{
             width: 50px;
+        }
+        .sec{
+            color: #888;
+            font-size: small;
         }
     </style>
   </head>
@@ -28,17 +33,15 @@
         <p class="disp" id="disp02"></p>
         <p class="disp" id="disp03"></p>
 
-        <input type=number value=4 id="input01" class="pair"></input>
-        :
-        <input type=number value=58 id="input02" class="pair"></input>
-        :
-        <input type=number value=0 id="input03" class="pair"></input>
+        <div hidden>
+            <input type=number value=4 id="input01" class="pair"></input>
+            :
+            <input type=number value=58 id="input02" class="pair"></input>
+            :
+            <input type=number value=0 id="input03" class="pair"></input>
+        </div>
 
-        <!--
-        <button id="btn01">start</button>
-        </br>
-        <button id="btn02">sync</button>
-        -->
+        <input type="time" id="input04" name="appt" value="04:28" />
     </div>
 
     <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>-->
@@ -51,6 +54,7 @@
         var input01 = document.getElementById("input01");
         var input02 = document.getElementById("input02");
         var input03 = document.getElementById("input03");
+        var input04 = document.getElementById("input04");
 
         var crr;
         var tgt;
@@ -63,6 +67,9 @@
             day: 60 *  60 * 24
         };
 
+        var ZeroPadding = function(argData, argNDigits){
+            return ('00000000000' + argData).slice(-1 * argNDigits);
+        }
 
         var fn01= function(){
             var daySec = input01.value * units.hour +
@@ -73,9 +80,33 @@
             
             var str ="";
             str += "Target Time: ";
-            str += input01.value + ":" + input02.value + " ." + input03.value + "";
+            str += ZeroPadding(input01.value, 2) 
+                + ":" 
+                + ZeroPadding(input02.value, 2) 
+                + "<span class=sec>." 
+                + ZeroPadding(input03.value, 2)
+                + "</span>";
             
-            disp02.innerText= str;
+            disp02.innerHTML= str;
+        }
+
+        var fn01picker= function(){
+            var hour = Number.parseInt(input04.value.split(':')[0]);
+            var min = Number.parseInt(input04.value.split(':')[1]);
+            var daySec = hour * units.hour + min * units.min;
+            
+            tgt = daySec;
+            
+            var str ="";
+            str += "Target Time: ";
+            str += ZeroPadding(hour, 2) 
+                + ":" 
+                + ZeroPadding(min, 2) 
+                + "<span class=sec>." 
+                + ZeroPadding(0, 2)
+                + "</span>";
+            
+            disp02.innerHTML= str;
         }
 
         var fn02 = function(){
@@ -90,9 +121,14 @@
 
             var str = "";
             str += "Current Time: ";
-            str += hour + ":" + min + " ." + sec;
+            str += ZeroPadding(hour, 2) 
+                + ":" 
+                + ZeroPadding(min, 2) 
+                + "<span class=sec>." 
+                + ZeroPadding(sec, 2)
+                + "</span>";
 
-            disp01.innerText = str; 
+            disp01.innerHTML = str; 
         }
 
         var fn03 = function(){
@@ -111,18 +147,25 @@
             
             var str = "";
             str += "Time Left: "
-            str += hour + "h" + min + "m" + sec + "s";
+            str += ZeroPadding(hour, 2) 
+                + ":" 
+                + ZeroPadding(min, 2) 
+                + "<span class=sec>." 
+                + ZeroPadding(sec, 2)
+                + "</span>";
             //str += " (" + daySec + " secs)";
             
-            disp03.innerText = str;
+            disp03.innerHTML = str;
         }
 
-        fn01();
+        //fn01();
+        fn01picker();
         fn02();
         fn03();
 
         setInterval(function(){
-        fn01();
+        //fn01();
+        fn01picker();
         fn02();
         fn03();
         }, 200);
