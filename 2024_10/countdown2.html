@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Count Down</title>
+    <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">-->
+
+    <style>
+        body{
+            background-color: #252525;
+            color: white;
+            font-family: sanserif;
+        }
+        p{
+            width: 120px;
+            border-bottom: solid 3px #888;
+        }
+        .pair{
+            width: 50px;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <h3>COUNT</h3>
+        <p class="disp" id="disp01"></p>
+        <p class="disp" id="disp02"></p>
+        <p class="disp" id="disp03"></p>
+
+        <input type=number value=4 id="input01" class="pair"></input>
+        :
+        <input type=number value=58 id="input02" class="pair"></input>
+        :
+        <input type=number value=0 id="input03" class="pair"></input>
+
+        <!--
+        <button id="btn01">start</button>
+        </br>
+        <button id="btn02">sync</button>
+        -->
+    </div>
+
+    <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>-->
+
+    <script>
+        var disp01 = document.getElementById("disp01");
+        var disp02 = document.getElementById("disp02");
+        var disp03 = document.getElementById("disp03");
+
+        var input01 = document.getElementById("input01");
+        var input02 = document.getElementById("input02");
+        var input03 = document.getElementById("input03");
+
+        var crr;
+        var tgt;
+
+        ////////
+        var units = {
+            "sec" : 1,
+            "min" : 60,
+            hour: 60 * 60,
+            day: 60 *  60 * 24
+        };
+
+
+        var fn01= function(){
+            var daySec = input01.value * units.hour +
+            input02.value * units.min +
+            input03.value * 1;
+            
+            tgt = daySec;
+            
+            var str ="";
+            str += "Target Time: ";
+            str += input01.value + ":" + input02.value + " ." + input03.value + "";
+            
+            disp02.innerText= str;
+        }
+
+        var fn02 = function(){
+            var now = Date.now() + (9 * units.hour * 1000);
+            var daySec = Math.floor(now / 1000) % units.day;
+            
+            crr = daySec;
+            
+            var sec = daySec % units.min;
+            var hour = Math.floor(daySec / units.hour);
+            var min = Math.floor((daySec % units.hour) / units.min);
+
+            var str = "";
+            str += "Current Time: ";
+            str += hour + ":" + min + " ." + sec;
+
+            disp01.innerText = str; 
+        }
+
+        var fn03 = function(){
+            var str = "";
+            str += "Time Left: ";
+            
+            if ( tgt < crr ){
+                tgt += units.day;
+            }
+        
+            var daySec = tgt - crr;
+            
+            var sec = daySec % units.min;
+            var hour = Math.floor(daySec / units.hour);
+            var min = Math.floor((daySec % units.hour) / units.min);
+            
+            var str = "";
+            str += "Time Left: "
+            str += hour + "h" + min + "m" + sec + "s";
+            //str += " (" + daySec + " secs)";
+            
+            disp03.innerText = str;
+        }
+
+        fn01();
+        fn02();
+        fn03();
+
+        setInterval(function(){
+        fn01();
+        fn02();
+        fn03();
+        }, 200);
+
+    </script>
+  </body>
+</html>
