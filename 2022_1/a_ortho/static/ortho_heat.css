@@ -19,7 +19,7 @@ header{
 
 .playground{
 	position:relative;
-	width: 700px;
+	width: 840px;
 	height: 500px;
 	border: solid 1px black;
 	background-color: #faf6e9;
@@ -38,7 +38,7 @@ header{
 
 .heat-box{
 	display: block;
-	width: 700px;
+	width: 840px;
 	height: 210px;
 	margin: 50px 0;
 }
@@ -64,7 +64,7 @@ header{
 	height: 100px;
 }
 .text-mod textarea{
-	width: 700px;
+	width: 840px;
 	height: 300px;
 }
 
