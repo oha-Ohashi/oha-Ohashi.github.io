@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>num quiz</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    .controls {
+      margin-bottom: 20px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 100px);
+      grid-gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .grid img {
+      width: 100px;
+      height: 158px;
+      object-fit: cover;
+      border: 1px solid #ccc;
+    }
+    .button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="controls">
+    <button id="toggleMode" class="button">mode: A</button>
+    <button id="startButton" class="button">start</button>
+  </div>
+
+  <div class="grid" id="row1"></div>
+  <div class="grid" id="row2"></div>
+
+  <script>
+    const modeButton = document.getElementById('toggleMode');
+    const startButton = document.getElementById('startButton');
+    const row1 = document.getElementById('row1');
+    const row2 = document.getElementById('row2');
+
+    let mode = 'A'; // モードAまたはB
+    let state = 'start'; // 'start' または 'showAnswer'
+    let currentFrontIndices = [];
+
+    // モード切り替え
+    modeButton.addEventListener('click', () => {
+      mode = (mode === 'A') ? 'B' : 'A';
+      modeButton.textContent = 'mode: ' + mode;
+      reset();
+    });
+
+    // スタート・答えを表示ボタン
+    startButton.addEventListener('click', () => {
+      if (state === 'start') {
+        showFrontImages();
+        startButton.textContent = 'show answer';
+        state = 'answer';
+      } else {
+        showBackImages();
+        startButton.textContent = 'start';
+        state = 'start';
+      }
+    });
+
+    function reset() {
+      row1.innerHTML = '';
+      row2.innerHTML = '';
+      currentFrontIndices = [];
+      startButton.textContent = 'start';
+      state = 'start';
+    }
+
+    function getRandomImageIndex() {
+      return String(Math.floor(Math.random() * 10)).padStart(2, '0');
+    }
+
+    function showFrontImages() {
+      row1.innerHTML = '';
+      row2.innerHTML = '';
+      currentFrontIndices = [];
+
+      for (let i = 0; i < 4; i++) {
+        const index = getRandomImageIndex();
+        currentFrontIndices.push(index);
+        const img = document.createElement('img');
+        //img.src = (mode === 'A') ? `gryphs/front${index}.png` : `gryphs/back${index}.png`;
+        img.src = getImageUrl(mode === 'A', i%2 === 0, index);
+        row1.appendChild(img);
+      }
+    }
+
+    function showBackImages() {
+      row2.innerHTML = '';
+
+      for (let i = 0; i < 4; i++) {
+        const img = document.createElement('img');
+        //img.src = (mode === 'A') ? `gryphs/back${index}.png` : `gryphs/ ${index}.png`;
+        img.src = getImageUrl(!(mode === 'A'), i%2 === 0, currentFrontIndices[i]);
+        row2.appendChild(img);
+      };
+    }
+
+    function getImageUrl(char, vowel,argIndex){
+        let type = '';
+        if (char) {
+            type = (vowel) ? 'v' : 'c';
+        }
+        else {
+            type = 'n';
+        }
+        return `gryphs/${type}${argIndex}.png`;
+    }
+  </script>
+
+</body>
+</html>
