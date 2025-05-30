@@ -15,14 +15,14 @@
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(4, 100px);
+      grid-template-columns: repeat(4, 80px);
       grid-gap: 10px;
       justify-content: center;
       margin-bottom: 20px;
     }
     .grid img {
-      width: 100px;
-      height: 158px;
+      width: 80px;
+      height: 126px;
       object-fit: cover;
       border: 1px solid #ccc;
     }
@@ -64,7 +64,7 @@
     startButton.addEventListener('click', () => {
       if (state === 'start') {
         showFrontImages();
-        startButton.textContent = 'show answer';
+        startButton.textContent = 'answer';
         state = 'answer';
       } else {
         showBackImages();
